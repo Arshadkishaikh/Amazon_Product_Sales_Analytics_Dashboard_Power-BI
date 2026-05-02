@@ -137,97 +137,35 @@ All insights are derived directly from the 89,082-record dataset and framed as d
 
 ```DAX
 -- ─────────────────────────────────────────
--- 1. Total Product Listings
+-- 1. Year to Date Sales
 -- ─────────────────────────────────────────
-Total Products =
-COUNTROWS(Amazon_Data)
+YTD Sales = TOTALYTD(SUM(Amazon_Data[Price(Dollar)]), 'Calendar Table'[Date])
 
 -- ─────────────────────────────────────────
--- 2. Average Price per Category
+-- 2.Year to Date Review
 -- ─────────────────────────────────────────
-Avg Price =
-AVERAGEX(
-    Amazon_Data,
-    Amazon_Data[Price(Dollar)]
-)
+YTD Reviews = TOTALYTD(sum(Amazon_Data[Number of  reviews]), 'Calendar Table'[Date])
 
 -- ─────────────────────────────────────────
 -- 3. Total Reviews
 -- ─────────────────────────────────────────
-Total Reviews =
-SUM(Amazon_Data[Number of reviews])
+Total Reviews = SUM(Amazon_Data[Number of reviews])
 
 -- ─────────────────────────────────────────
--- 4. Average Reviews per Product
+-- 4. Year to Date Product Sold
 -- ─────────────────────────────────────────
-Avg Reviews per Product =
-DIVIDE(
-    [Total Reviews],
-    [Total Products],
-    0
-)
+YTD Products Sold = TOTALYTD(COUNT(Amazon_Data[Product Category]),'Calendar Table'[Date])
 
 -- ─────────────────────────────────────────
--- 5. High-Value Products (Price > $500)
+-- 5. Quater to Date Sale
 -- ─────────────────────────────────────────
-High Value Products =
-CALCULATE(
-    COUNTROWS(Amazon_Data),
-    Amazon_Data[Price(Dollar)] > 500
-)
+QTD Sales = TOTALQTD(SUM(Amazon_Data[Price(Dollar)]), 'Calendar Table'[Date])
 
 -- ─────────────────────────────────────────
--- 6. Price Segment Calculated Column
+-- 6. Creation of Calendar Table
 -- ─────────────────────────────────────────
-Price Segment =
-SWITCH(
-    TRUE(),
-    Amazon_Data[Price(Dollar)] < 25,    "Budget (<$25)",
-    Amazon_Data[Price(Dollar)] < 100,   "Mid ($25–$100)",
-    Amazon_Data[Price(Dollar)] < 500,   "Premium ($100–$500)",
-    "Luxury (>$500)"
-)
+Calendar Table = CALENDAR(MIN(Amazon_Data[Order Date]), MAX(Amazon_Data[Order Date]))
 
--- ─────────────────────────────────────────
--- 7. YoY Listing Growth (%)
--- ─────────────────────────────────────────
-YoY Listing Growth % =
-VAR CurrentYear = CALCULATE([Total Products], FILTER(ALL('Date'), 'Date'[Year] = MAX('Date'[Year])))
-VAR PriorYear   = CALCULATE([Total Products], FILTER(ALL('Date'), 'Date'[Year] = MAX('Date'[Year]) - 1))
-RETURN
-    DIVIDE(CurrentYear - PriorYear, PriorYear, 0)
-
--- ─────────────────────────────────────────
--- 8. Review Tier Calculated Column
--- ─────────────────────────────────────────
-Review Tier =
-SWITCH(
-    TRUE(),
-    Amazon_Data[Number of reviews] < 10,    "Emerging (< 10)",
-    Amazon_Data[Number of reviews] < 100,   "Growing (10–100)",
-    Amazon_Data[Number of reviews] < 1000,  "Established (100–1K)",
-    Amazon_Data[Number of reviews] < 10000, "Popular (1K–10K)",
-    "Viral (10K+)"
-)
-
--- ─────────────────────────────────────────
--- 9. Category Share of Total Products (%)
--- ─────────────────────────────────────────
-Category Share % =
-DIVIDE(
-    CALCULATE([Total Products], ALLEXCEPT(Amazon_Data, Amazon_Data[Product Category])),
-    CALCULATE([Total Products], ALL(Amazon_Data[Product Category])),
-    0
-)
-
--- ─────────────────────────────────────────
--- 10. Max Reviewed Product (per category)
--- ─────────────────────────────────────────
-Top Reviewed Product =
-MAXX(
-    TOPN(1, Amazon_Data, Amazon_Data[Number of reviews], DESC),
-    Amazon_Data[Product Description]
-)
 ```
 
 ---
