@@ -18,10 +18,7 @@
 - [Key Insights](#-key-insights)
 - [Tools & Technologies](#️-tools--technologies)
 - [DAX Measures](#-dax-measures--calculations)
-- [Dashboard Features](#-dashboard-features)
-- [Project Structure](#-project-structure)
 - [How to Use](#-how-to-use)
-- [Future Enhancements](#-future-enhancements)
 - [Author](#-author)
 
 ---
@@ -48,7 +45,7 @@ This dashboard was designed to answer the strategic questions that matter most:
 
 ## 📊 Dashboard Preview
 
-![Amazon Sales Analytics Dashboard](./images/Amazon_Sales_Analysis_Dashboard.png)
+![Amazon Sales Analytics Dashboard](./Amazon_Sales_Analysis_Dashboard.png)
 
 > **Dataset Snapshot:**
 > - Total Product Listings: **89,082**
@@ -130,7 +127,7 @@ All insights are derived directly from the 89,082-record dataset and framed as d
 |---|---|
 | **Microsoft Power BI Desktop** | Dashboard design, data modeling, and interactive visualizations |
 | **Microsoft Excel** | Raw data source — 89,082 product records across 6 columns |
-| **Power Query (M Language)** | Data cleaning, date parsing, price segmentation, null handling |
+| **Power Query** | Data cleaning, date parsing, price segmentation, null handling |
 | **DAX (Data Analysis Expressions)** | KPI measures, YoY growth, price tier analysis, review aggregations |
 | **Power BI Bing Maps** | Geographic visualization of shipment destinations |
 
@@ -235,45 +232,6 @@ MAXX(
 
 ---
 
-## ✨ Dashboard Features
-
-| Feature | Description |
-|---|---|
-| **KPI Summary Cards** | Total Products, Avg Price, Total Reviews, Avg Reviews per Product, High-Value Product Count |
-| **Category Distribution Chart** | Bar/column chart showing product count per category — reveals catalog concentration |
-| **Price Segment Donut Chart** | Budget / Mid / Premium / Luxury breakdown across the full 89K catalog |
-| **Avg Price by Category** | Ranked bar chart from Laptops ($1,001) to Toys ($31) for instant pricing benchmarking |
-| **Review Volume by Category** | Total and average review analysis — surfaces demand and social proof leaders |
-| **YoY Listing Growth Trend** | Line chart tracking annual listing growth from 2019 to 2022 |
-| **Top Products by Reviews** | Filterable table of highest-reviewed products per selected category |
-| **High-Value Product Analysis** | Products priced >$500 broken down by category — Camera and Laptop dominate |
-| **Shipment Filter Slicer** | Segment the dashboard by shipment availability/destination |
-| **Full Cross-filtering** | All visuals respond to selections — click any bar, segment, or year to filter everything |
-
----
-
-## 📁 Project Structure
-
-```
-amazon-sales-dashboard/
-│
-├── 📂 data/
-│   └── Amazon_Combined_Data.xlsx          # Raw dataset — 89,082 product records
-│
-├── 📂 dashboard/
-│   └── Amazon_Sales_Analysis_Dashboard.pbix  # Power BI dashboard file
-│
-├── 📂 images/
-│   └── Amazon_Sales_Analysis_Dashboard.png   # Dashboard screenshot for README
-│
-├── 📂 dax/
-│   └── measures.dax                          # All DAX measures in plain text
-│
-└── README.md                                 # This file
-```
-
----
-
 ## 🚀 How to Use
 
 ### For Recruiters & Viewers
@@ -287,30 +245,6 @@ The dashboard screenshot above provides a full visual overview. To explore the *
 
 > 💡 *If Power BI prompts to update data source, navigate to: Home → Transform Data → Data Source Settings and point to `data/Amazon_Combined_Data.xlsx`*
 
-### For Developers & Analysts
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/amazon-sales-dashboard.git
-
-# 2. Navigate into the project
-cd amazon-sales-dashboard
-
-# 3. Open the dashboard in Power BI Desktop
-# File → Open Report → dashboard/Amazon_Sales_Analysis_Dashboard.pbix
-```
-
----
-
-## 🔮 Future Enhancements
-
-- [ ] Add **Price Elasticity Analysis** — correlating price changes with review velocity as a demand proxy
-- [ ] Build a **Competitive Density Map** — products per price band per category (where is it crowded vs. open?)
-- [ ] Create a **Review Momentum Page** — identifying products gaining reviews fastest in 2022
-- [ ] Add **Seller Intelligence** — grouping products by brand to identify dominant players per category
-- [ ] Integrate **Python sentiment analysis** on product descriptions to cluster by feature keywords
-- [ ] Publish to **Power BI Service** with row-level security filters by category
-
 ---
 
 ## 📄 License
@@ -321,17 +255,14 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ## 👤 Author
 
-**[Your Full Name]**
+**[ARSHAD K I SHAIKH]**
 *Data Analyst | Power BI Developer | Ecommerce & Product Analytics*
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/YOUR_PROFILE)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=for-the-badge&logo=github)](https://github.com/YOUR_USERNAME)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-orange?style=for-the-badge)](https://YOUR_PORTFOLIO_SITE)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://linkedin.com/in/arshadkishaikh/)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=for-the-badge&logo=github)](https://github.com/Arshadkishaikh)
 
 ---
 
 > 💼 *This project demonstrates end-to-end data analytics on a real-world 89K-record ecommerce dataset — covering Excel data ingestion, Power Query transformation, DAX modeling, and business-insight-driven dashboard design in Power BI.*
 
 > ⭐ If this project helped or inspired you, please consider giving it a star!
-# Amazon_Product_Sales_Analytics_Dashboard_Power-BI
-A Microsoft Power BI dashboard analyzing **89,082 Amazon product listings** across 8 categories, 4 years (2019–2022), and multiple price tiers — built to surface product demand signals, category-level pricing intelligence, and customer sentiment trends that drive smarter catalog and merchandising decisions.
